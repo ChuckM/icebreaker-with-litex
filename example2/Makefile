@@ -1,14 +1,16 @@
 #
-# Blink the LED example using Litex/Migen
+# build a led chaser design example using Litex/Migen
 #
-cylon.bit:	build/top.txt
+DESIGN=cylon
+
+$(DESIGN).bit:	build/top.txt
 	icepack $< $@
 
-build/top.txt: cylon.py
-	./cylon.py
+build/top.txt: $(DESIGN).py
+	./$(DESIGN).py
 
-flash: cylon.bit
+flash: $(DESIGN).bit
 	iceprog $<
 
 clean:
-	rm -rf build cylon.bit
+	rm -rf build $(DESIGN).bit
