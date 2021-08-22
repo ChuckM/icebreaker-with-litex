@@ -13,24 +13,20 @@ from migen import *
 # base class is the Platform()
 from litex.build.generic_platform import *
 
-# Our IceBreaker is based on the Lattice ICE40UP5K FPGA chip
-from litex.build.lattice import LatticePlatform
-
-# It is a known board
+# It is a known board so import that instead
 from litex_boards.platforms.icebreaker import Platform
 
-# Some cores we can use
-from litex.soc.cores.ram import Up5kSPRAM
-from litex.soc.cores.clock import iCE40PLL
-
-# And now the "design" (sort of like the 'behavioural' clause of VHDL)
 #
 # First off create a Platform instance from the imported icebreaker 
 #
 platform = Platform()
 
 #
-# Define the Digilent PMOD
+# Two steps in the design process here, one is some code to describe
+# how the Digilent PMODs are connected, the other is the actual
+# LED Chaser code.
+#
+# Step 1: Define the Digilent PMOD
 #
 # This is fairly simple code to express a Digilent LED8 PMOD connected
 # to one of the icebreaker's PMOD ports. (PMOD1A, PMOD1B, PMOD2)
@@ -59,7 +55,7 @@ platform.add_extension(led8_pmod("PMOD1A"));
 platform.add_extension(led8_pmod("PMOD1B"));
 
 #
-# Now we define a module that is a "Chaser" (basically a set of leds
+# Step 2: Define a module that is a "Chaser" (basically a set of leds
 # that blink in sequence.  Like example 1 the counter/divider set up
 # is used to provide a slower clock source. 
 # 
