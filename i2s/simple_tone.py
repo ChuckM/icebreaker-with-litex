@@ -248,9 +248,9 @@ class I2S(Module):
 
         # used to trigger the oscilloscope
         d6 = platform.request("pmod1_6")
-#
-# Note update to going with 32 bits (2 x 16 bit samples)
-#
+        #
+        # Shift register holding data going out (one sample @ 24 bits)
+        #
         xmit_reg = Signal(24)
 
         #
