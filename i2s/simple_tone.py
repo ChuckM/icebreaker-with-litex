@@ -5,7 +5,6 @@
 #
 from migen import *
 from migen.genlib.resetsync import AsyncResetSynchronizer
-#from migen.genlib.fsm import *
 from litex.build.generic_platform import *
 from litex_boards.platforms.icebreaker import Platform, break_off_pmod
 import math
@@ -242,7 +241,6 @@ class I2S(Module):
             each time a new sample is required. This lets you synchronize
             with this module easily.
         """
-        ticks = 21 
         delay = Signal(8)
         shift_count = Signal(8)
         self.clock_domains.cd_sample_clk = ClockDomain("cd_sample_clk")
@@ -271,9 +269,9 @@ class I2S(Module):
         # This sequential block generates the MCLK (master clock),
         # LRCLK (left/right clock), and the SCLK (serial clock).
         # The ratio of the master clock to the LRCLK determines
-        # the bitwidth. We go for a 1024x ratio starting with
-        # a 25MHz master clock, which makes for a 32 bit
-        # sample (2 x 16) sample period of 24.414 kHz
+        # the bitwidth. We go for a 768x ratio starting with
+        # a 25MHz master clock, which makes for a 48 bit
+        # sample (2 x 24) sample period of 32.552 kHz
         #
         self.sync += [
             mclk.eq(~mclk),    # running at 1/2 the clock rate (25MHz)
