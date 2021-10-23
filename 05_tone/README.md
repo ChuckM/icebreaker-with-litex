@@ -35,6 +35,9 @@ module named `PLL` that lets us create a clock that is faster than the
 12 MHz that the crystal creates, and a module named `I2S` that implements
 the i2s protocol and connects to the Digilent PMOD.
 
+The Digilent PMOD I'm using is the 
+[PMODI2S2](https://digilent.com/reference/pmod/pmodi2s2/start).
+
 In this example the tone generator is super simple, it generates exactly one
 tone at one frequency. That is all we need to do however to prove to ourselves
 that our i2s module is working properly and once we have that we can replace
