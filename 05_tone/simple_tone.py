@@ -298,7 +298,7 @@ class I2S(Module):
                                 xmit_reg.eq(right_dr << (24 - len(right_dr))),
                             )
                         ).Else(
-                            xmit_reg.eq((xmit_reg[:-1] << 1) | xmit_reg[-1]),
+                            xmit_reg.eq((xmit_reg << 1) | xmit_reg[-1]),
                         ),
                     ),
                 ).Else( sticks.eq(sticks + 1)),
